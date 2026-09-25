@@ -75,7 +75,7 @@ export function createPortal({dataDir=process.env.DATA_DIR||resolve(HOME,'data')
  const secure=req=>req.socket.encrypted?'; Secure':'';
  async function handler(req,res){
   const send=(status,data,headers={})=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers});res.end(JSON.stringify(data))};
-  res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('X-Frame-Options','DENY');res.setHeader('Referrer-Policy','no-referrer');
+  res.setHeader('Cache-Control','no-store');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('X-Frame-Options','DENY');res.setHeader('Referrer-Policy','no-referrer');
   try{
    const u=new URL(req.url,'http://localhost'),path=u.pathname;
    if(['POST','PATCH','PUT','DELETE'].includes(req.method)&&req.headers.origin&&new URL(req.headers.origin).host!==req.headers.host)return send(403,{error:'跨站请求被拒绝'});
