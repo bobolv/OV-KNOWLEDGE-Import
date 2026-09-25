@@ -1,0 +1,9 @@
+data
+.env
+.git
+test
+*.zip
+*.md
+*.ps1
+verification.json
+.sites-runtime

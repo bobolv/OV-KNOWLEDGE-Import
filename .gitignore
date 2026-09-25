@@ -1,0 +1,12 @@
+data/
+.env
+.sites-runtime/
+
+.env.*
+!.env.example
+*.sqlite*
+*.key
+*.tar
+*.zip
+backups/
+collection-runs/

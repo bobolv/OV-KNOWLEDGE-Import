@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-19",
+  "target": "Windows Docker Desktop",
+  "ov_health_version": "v0.4.17.1",
+  "ov_health_reachable_from_container": true,
+  "ov_auth_mode": "api_key",
+  "unauthenticated_tasks_http": 401,
+  "unit_contract_tests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "browser_checks": [
+    "login",
+    "upload original event text and DOC",
+    "save supplementary metadata",
+    "desktop 1440px",
+    "mobile 390px",
+    "no JavaScript page errors"
+  ],
+  "actual_ov_import": "not_run_api_key_required",
+  "wps_et": "original retained; manually converted counterpart required",
+  "known_scope": "single trusted operator; no automatic multi-document AI event merge"
+}
