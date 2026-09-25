@@ -1,7 +1,7 @@
 services:
   portal:
     build: .
-    image: ov-records-portal:1.0.0
+    image: ov-records-portal:1.1.0
     container_name: ov-records-portal
     restart: unless-stopped
     ports:
@@ -10,6 +10,7 @@ services:
     environment:
       PORTAL_PASSWORD: ${PORTAL_PASSWORD:?请运行 start.ps1 设置工作台密码}
       OV_URL: http://host.docker.internal:1933
+      COLLECTOR_TOKEN: ${COLLECTOR_TOKEN:-}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:

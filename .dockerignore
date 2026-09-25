@@ -1,5 +1,9 @@
 data
 .env
+.env.*
+backups
+collection-runs
+scripts
 .git
 test
 *.zip

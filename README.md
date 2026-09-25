@@ -5,6 +5,14 @@
 
 Windows Docker Desktop 上运行的 B/S 应用，适配现有 OpenViking HTTP API。浏览器负责上传和可选补录；服务端保留原件、去重、排队、查询OV任务并单独同步资料说明。无需npm安装，运行环境为Node.js 24（含内置SQLite）。
 
+## v1.1 自动采集与人工审核
+
+v1.0已封版，Git标签为`v1.0-manual`与`工作记录入库平台-v1.0-手动导入`。[封版发布页](https://github.com/bobolv/OV-KNOWLEDGE-Import/releases/tag/v1.0-manual)。
+
+新流程：Codex定时检索公开知识 → 自动生成摘要、标签、来源和适用范围 → 保存“待导入 · 待审核” → 人工检查与补录 → 审核通过 → 人工点击导入OV。批量导入自动跳过未审核和退回资料。修改摘要或属性后需要重新审核。
+
+操作和采集接口契约见[采集SOP](docs/COLLECTOR.md)，部署及回退见[v1.1说明](docs/RELEASE-v1.1.md)。摘要由Codex定时任务生成，工作台不另行调用模型，不要求额外模型API Key。自动任务凭据只有采集权限，无法使用审核、导入或配置接口；独立用户和不可抵赖的身份签名不在本版本范围，审核人名称为自行填写。
+
 ## 启动
 
 在此目录运行 `powershell -ExecutionPolicy Bypass -File .\start.ps1`，设置至少6字符的工作台密码。程序生成本地 `.env` 并运行 `docker compose up -d --build`。随后访问 http://127.0.0.1:8787。
