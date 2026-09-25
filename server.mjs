@@ -68,7 +68,7 @@ export function createPortal({dataDir=process.env.DATA_DIR||resolve(HOME,'data')
  }
  for(const r of list()){if(r.status==='submitting'){r.status='uncertain';r.error='服务重启前提交未确认，请关联OV任务后继续';save(r)}else if(r.status==='uploading'){r.status='queued';save(r)}}
  const timer=setInterval(()=>{if(stopped)return;for(const r of list().filter(x=>['queued','processing'].includes(x.status)).slice(0,2))void run(r)},2500);timer.unref();
- const maxBytes=64*1024*1024;
+ const maxBytes=200*1024*1024;
  async function body(req,max=32768){let b=[],n=0;for await(const x of req){n+=x.length;if(n>max)throw Object.assign(new Error('请求超过大小限制'),{status:413});b.push(x)}return Buffer.concat(b)}
  async function json(req){try{return JSON.parse((await body(req)).toString())}catch(e){if(e.status)throw e;throw Object.assign(new Error('JSON格式错误'),{status:400})}}
  function metadata(x){const fields=['title','project','event','kind','occurred','people','progress','next','tags','purpose','note','summary','applicability','caveats'];const o={};for(const k of fields)o[k]=String(x[k]||'').trim().slice(0,k==='note'?4000:2000);o.project=o.project||'未分类';return o}
